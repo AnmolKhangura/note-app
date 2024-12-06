@@ -2,7 +2,9 @@ import Note from "../models/Note.js";
 
 async function getNotes(req,res){
     try {
-        const notes = await Note.getUserNotes(req.params.id);
+        console.log(req.user);
+        
+        const notes = await Note.getUserNotes(req.user.id);
         res.status(200).json(notes);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch user notes' });    
@@ -13,7 +15,7 @@ async function addNote(req,res){
     try {
         console.log(req.body);
         
-        const notes = await Note.createNote(req.params.id, req.body.title, req.body.content);
+        const notes = await Note.createNote(req.user.id, req.body.title, req.body.content);
         res.status(200).json(notes);
     } catch (error) {
         res.status(500).json({ error: 'Failed to add user note' });
@@ -24,7 +26,7 @@ async function updateNote(req, res){
     try {
         console.log(req.body);
 
-        const note = await Note.updateNote(req.params.id, req.body.title, req.body.content)
+        const note = await Note.updateNote(req.user.id, req.params.id, req.body.title, req.body.content)
         res.status(200).json(note);
         
     } catch (error) {
@@ -34,7 +36,7 @@ async function updateNote(req, res){
 
 async function deleteNote(req,res){
     try {
-        const note = await Note.deleteNote(req.params.id)
+        const note = await Note.deleteNote(req.user.id, req.params.id)
         res.status(200).json(note)
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete note' });

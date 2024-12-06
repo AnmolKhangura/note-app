@@ -36,7 +36,7 @@ async function login(req, res){
 
         // res.status(201).json({ message: `User ${user.id} logged in successfully`, user});
         const token = jwtUtil.createToken(user.id);
-        res.status(201).json({ token , user});
+        res.status(201).json({ token });
     } 
     catch (error) {
         res.status(500).json({ error: 'Failed to login' });

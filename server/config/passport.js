@@ -21,8 +21,6 @@ passport.use(
         try {
 
           const user = await User.getUserByEmail(username);
-
-          console.log(user);
           
             //check if the user exists 
           if (user) {
@@ -40,13 +38,14 @@ passport.use(
             }
           } 
           else {
+            console.log("user not found");
             return done(null,false, {message: "User not found."});
           }
         } 
   
         catch (err) {
             console.error(err);
-            done(err);
+            return done(err);
         }
   
       }
@@ -59,20 +58,23 @@ passport.use(
     "jwt",
     new JwtStrategy(
         {
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: JWT_SECRET
+          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+          secretOrKey: JWT_SECRET
         },
         async (payload, done) => {
 
-            try {
-                console.log(payload);
-                
-                // const user = await User.getUserById(payload.id);
-            } 
-            catch (err) {
-                console.error(err);
-                done(err)
-            }
+          try {
+            console.log(payload);
+            const user = await User.getUserById(payload.id);
+            if(user)
+              return done(null, user);
+            else
+              return done(null, false);
+          } 
+          catch (err) {
+            console.error(err);
+            return done(err)
+          }
 
         }
     )
