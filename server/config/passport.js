@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { Strategy } from "passport-local";
+import GoogleStrategy from "passport-google-oauth2";
 import env from "dotenv";
 import User from '../models/User.js';
 import passwordUtil from '../utils/passwordUtil.js';
@@ -79,5 +80,34 @@ passport.use(
         }
     )
 )
+
+passport.use(
+  "google",
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/secrets",
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      try {
+        console.log(profile);
+        const user = await User.getUserByEmail(profile.email)        
+        if (!user) {
+          const newUser = await User.createUser(profile.email, "google", profile.displayName);
+          console.log("New google sign in", newUser);
+          
+          return cb(null, newUser);
+        } else {
+          console.log("Google sign in", user);
+          return cb(null, user);
+        }
+      } catch (err) {
+        return cb(err);
+      }
+    }
+  )
+);
 
 export default passport;

@@ -43,5 +43,16 @@ async function login(req, res){
     }
 }
 
-export {register, login};
+async function oauth(req, res){
+    try {
+        const user = req.user;  // Passport sets this after successful authentication
+        const token = jwtUtil.createToken(user.id);
+        res.status(201).json({ token });
+
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to login' });
+    }
+}
+
+export {register, login, oauth};
 
