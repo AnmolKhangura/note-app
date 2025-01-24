@@ -1,13 +1,12 @@
-import Login from './components/Login';
-import Signup from './components/SignUp';
-import Dashboard from './components/Dashboard'
-import axios from "./api/axios";
-import './App.css'
+import Login from './components/pages/Login';
+import SignUp from './components/pages/SignUp';
+import Dashboard from './components/pages/Dashboard';
+import { login, signup } from './api/authService';
+import './App.css';
 
 function App() {
   const handleLogin = (email, password) => {
-
-    axios.post("/auth/login", {email, password })
+    login(email, password)
       .then(response => {
         console.log(response.data); // Handle the response data
       })
@@ -15,19 +14,26 @@ function App() {
         console.error('Error fetching data:', error);
       });
 
-    // Call login API here
     console.log('Logging in with', email, password);
   };
+
   const handleSignup = (name, email, password) => {
-    // Call signup API here
-    console.log('Signing up with', email, password);
+    signup(name, email, password)
+      .then(response => {
+        console.log(response.data); // Handle the response data
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    console.log('Signing up with', name, email, password);
   };
 
   return (
     <div>
       <Dashboard />
       <Login handleLogin={handleLogin} />
-      <Signup handleSignup={handleSignup} />
+      <SignUp handleSignup={handleSignup} />
     </div>
   );
 }
