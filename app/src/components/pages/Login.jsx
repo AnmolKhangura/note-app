@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TextField, Button, Card, CardContent, Typography } from '@mui/material';
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, handleGoogle }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,6 +37,10 @@ const Login = ({ handleLogin }) => {
           />
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Login
+          </Button>
+          <hr className='line'/>
+          <Button type="button" variant="outlined" color="primary" fullWidth onClick={handleGoogle}>
+            Continue with Google
           </Button>
         </form>
       </CardContent>

@@ -1,14 +1,19 @@
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Dashboard from './components/pages/Dashboard';
-import { login, signup } from './api/authService';
+import { loginEmail, signup, googleAuth} from './api/authService';
+import { useAuth } from '../context/AuthContext';
 import './App.css';
 
 function App() {
+
+  const { isAuthenticated, login, logout } = useAuth();
+
   const handleLogin = (email, password) => {
-    login(email, password)
+    loginEmail(email, password)
       .then(response => {
         console.log(response.data); // Handle the response data
+        login(response.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -29,11 +34,24 @@ function App() {
     console.log('Signing up with', name, email, password);
   };
 
+  const handleGoogle = () => {
+    googleAuth()
+      .then(response => {
+        console.log(response.data); // Handle the response data
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    console.log('Logging in with Google');
+  };
+
   return (
     <div>
-      <Dashboard />
-      <Login handleLogin={handleLogin} />
-      <SignUp handleSignup={handleSignup} />
+      {isAuthenticated ? <Dashboard /> : <Login handleLogin={handleLogin} handleGoogle={handleGoogle}/>}
+      <SignUp handleSignup={handleSignup} handleGoogle={handleGoogle}/>
+       
+
     </div>
   );
 }
