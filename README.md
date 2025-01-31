@@ -4,7 +4,7 @@ Note App
 Overview
 --------
 
-Anmol Khangura Note App is a full-stack web application that allows users to create, edit, and delete notes. The application is built using React (frontend) and Node.js with Express (backend), and it incorporates authentication for user management.
+Note App is a full-stack web application that allows users to create, edit, and delete notes. The application is built using React (frontend) and Node.js with Express (backend), and it incorporates authentication for user management.
 
 Motivation
 ----------
