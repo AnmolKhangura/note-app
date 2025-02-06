@@ -9,17 +9,17 @@ Note App is a full-stack web application that allows users to create, edit, and 
 Motivation
 ----------
 
-The motivation behind this project is:
+This project was developed to:
 
-*   To learn about user authentication and Google OAuth.
-    
-*   To implement JWT for secure authentication and a stateless server.
-    
-*   To gain hands-on experience with React and backend development while following best practices.
-    
-*   To get a sense of full-stack development by working on both frontend and backend.
-    
-*   To integrate PostgreSQL as the database solution.
+* Gain hands-on experience with user authentication and Google OAuth.
+
+* Implement JWT for secure and stateless authentication.
+
+* Improve React and backend development skills while following best practices.
+
+* Gain a deeper understanding of full-stack development.
+
+* Integrate PostgreSQL as the database solution.
     
 
 Features
@@ -29,7 +29,7 @@ Features
     
 *   Google OAuth integration
     
-*   Create, read, update, and delete (CRUD) notes
+*   CRUD Notes Management – Users can create, read, update, and delete notes.
     
 *   Secure authentication using JWT
     
@@ -40,12 +40,12 @@ Features
 *   Backend using Express and PostgreSQL
     
 
-Current Progress
+Project Status
 ----------------
+✅ The backend is complete and can be tested using Postman.
 
-*   The **backend** is complete and can be tested with Postman.
-    
-*   The **frontend UI components** are ready, but they still need to be connected to the backend.
+🛠 The frontend UI components are built but need to be connected to the backend.
+
     
 
 Installation
@@ -53,12 +53,9 @@ Installation
 
 ### Prerequisites
 
-*   Setting up Google OAuth: [Google Cloud OAuth Setup Guide](https://support.google.com/cloud/answer/6158849?hl=en#zippy=)
-    
-*   [Node.js](https://nodejs.org/)
-    
-*   [PostgreSQL](https://www.postgresql.org/)
-    
+Set up Google OAuth: 
+
+*   Google Cloud OAuth Setup Guide: [Google Cloud OAuth Setup Guide](https://support.google.com/cloud/answer/6158849?hl=en#zippy=)
 
 Ensure you have the following installed on your system:
 
