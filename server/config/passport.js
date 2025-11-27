@@ -29,7 +29,7 @@ passport.use(
 
             const valid = await passwordUtil.comparePassword(password, storedHashedPassword);
 
-            console.log("Login", valid);
+            console.log("Can login:", valid);
             
             if (valid){
                 return done(null, user);

@@ -7,7 +7,7 @@ const Login = ({ handleLogin, handleGoogle }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call the login handler (probably pass email & password)
+    // Call the login handler
     handleLogin(email, password);
   };
 

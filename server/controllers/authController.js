@@ -39,6 +39,7 @@ async function login(req, res){
         res.status(201).json({ token });
     } 
     catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Failed to login' });
     }
 }
