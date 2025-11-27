@@ -11,6 +11,8 @@ function Dashboard() {
 
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editingNoteId, setEditingNoteId] = useState(null);
+  const [editLoading, setEditLoading] = useState(false);
 
   const fetchNotes = async () => {
     setLoading(true);
@@ -51,10 +53,41 @@ function Dashboard() {
     }
   }
 
+  function openEditModal(noteId) {
+    setEditingNoteId(noteId);
+  }
+
+  async function handleEditSave(updatedNote) {
+    if (!editingNoteId) return;
+    setEditLoading(true);
+    try {
+      await notesService.updateNote(editingNoteId, updatedNote);
+      toast.success('Note updated');
+      setEditingNoteId(null);
+      await fetchNotes();
+    } catch (error) {
+      console.error('Failed to update note', error);
+      toast.error('Failed to update note');
+    } finally {
+      setEditLoading(false);
+    }
+  }
+
+  function handleEditCancel() {
+    setEditingNoteId(null);
+  }
+
   return (
     <div>
       <Header />
-      <CreateArea onAdd={addNote} />
+      <CreateArea
+        onAdd={addNote}
+        onUpdate={handleEditSave}
+        onCancel={handleEditCancel}
+        isEditMode={!!editingNoteId}
+        editingNote={editingNoteId ? notes.find(n => n.id === editingNoteId) : null}
+        isLoading={editLoading}
+      />
       {loading ? (
         <div style={{display: 'flex', justifyContent: 'center', marginTop: 32}}>
           <CircularProgress />
@@ -62,7 +95,14 @@ function Dashboard() {
       ) : (
         notes.map((note) => {
           return (
-            <Note key={note.id} id={note.id} title={note.title} onDelete={deleteNote} content={note.content} />
+            <Note
+              key={note.id}
+              id={note.id}
+              title={note.title}
+              onDelete={deleteNote}
+              onEdit={openEditModal}
+              content={note.content}
+            />
           )
         })
       )}
