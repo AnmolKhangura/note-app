@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 app.use('/notes', noteRoutes);
 
 
