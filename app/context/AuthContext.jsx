@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     // const navigate = useNavigate();
   
-    // Check if the user is authenticated (on app load)
+    // Check if the user is authenticated
     useEffect(() => {
       if (Jwt.get()) {
         setIsAuthenticated(true);

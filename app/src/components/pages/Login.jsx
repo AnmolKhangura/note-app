@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { TextField, Button, Card, CardContent, Typography } from '@mui/material';
+import { TextField, Button, Card, CardContent, Typography, CircularProgress } from '@mui/material';
 
-const Login = ({ handleLogin, handleGoogle }) => {
+const Login = ({ handleLogin, handleGoogle, isLoading=false }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,8 +35,8 @@ const Login = ({ handleLogin, handleGoogle }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
+          <Button type="submit" variant="contained" color="primary" fullWidth disabled={isLoading}>
+            {isLoading ? <CircularProgress size={20} color="inherit" /> : 'Login'}
           </Button>
           <hr className='line'/>
           <Button type="button" variant="outlined" color="primary" fullWidth onClick={handleGoogle}>
