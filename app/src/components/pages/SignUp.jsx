@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { TextField, Button, Card, CardContent, Typography, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { TextField, Button, Card, CardContent, Typography, CircularProgress, Box } from '@mui/material';
 
 const Signup = ({ handleSignup, handleGoogle, isLoading=false }) => {
   const [name, setName] = useState('');
@@ -68,6 +69,14 @@ const Signup = ({ handleSignup, handleGoogle, isLoading=false }) => {
             Continue with Google
           </Button>
         </form>
+        <Box sx={{ marginTop: '1rem', textAlign: 'center' }}>
+          <Typography variant="body2">
+            Already have an account?{' '}
+            <Link to="/login" style={{ color: '#1976d2', textDecoration: 'none', fontWeight: 'bold' }}>
+              Log In
+            </Link>
+          </Typography>
+        </Box>
       </CardContent>
     </Card>
   );
