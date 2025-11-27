@@ -22,8 +22,7 @@ export const AuthProvider = ({ children }) => {
     const fetchUserName = async () => {
       try {
           const res = await axios.get(`/users`);
-          setUserName(res.data?.name || null);
-          console.log('Fetched user name:', res.data?.name);
+          setUserName(res.data);
       } catch (error) {
         console.error('Failed to fetch user name', error);
       }

@@ -5,7 +5,7 @@ import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Dashboard from './components/pages/Dashboard';
 import { loginEmail, signup, googleAuth} from './api/authService';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from './context/AuthContext';
 import './App.css';
 
 function App() {
