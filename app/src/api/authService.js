@@ -1,5 +1,7 @@
 import axios from './axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const loginEmail = (email, password) => {
   return axios.post('/auth/login', { email, password });
 };
@@ -9,5 +11,5 @@ export const signup = (name, email, password) => {
 };
 
 export const googleAuth = () => {
-  window.location.href = 'http://localhost:3000/auth/google';
+  window.location.href = `${API_BASE_URL}/auth/google`;
 };
