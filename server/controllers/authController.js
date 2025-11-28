@@ -13,7 +13,7 @@ async function register(req, res){
 
         console.log("User registered: ",  newUser);
 
-        const token = jwtUtil.createToken(user.id);
+        const token = jwtUtil.createToken(newUser.id);
         res.status(201).json({ token , message: `User ${newUser.id} registered successfully`});
 
         
