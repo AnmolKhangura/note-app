@@ -39,15 +39,6 @@ Features
     
 *   Backend using Express and PostgreSQL
     
-
-Project Status
-----------------
-✅ The backend is complete and can be tested using Postman.
-
-🛠 The frontend UI components are built but need to be connected to the backend.
-
-    
-
 Installation
 ------------
 
@@ -91,7 +82,14 @@ Ensure you have the following installed on your system:
         PG_PORT=your_postgres_port
         GOOGLE_CLIENT_ID=your_google_client_id
         GOOGLE_CLIENT_SECRET=your_google_client_secret
+        FRONTEND_URL="http://localhost:5173" <- change the url as required
         ```
+
+     - Create a .env file in the server/ directory and configure the following:
+  
+         ```
+         VITE_API_BASE_URL=http://localhost:3000 <- change the url as required
+         ```
       
 4.  Start the backend server:
     ```
@@ -105,7 +103,7 @@ Ensure you have the following installed on your system:
    npm run dev
    ```
     
-6.  Open the application in your browser at http://localhost:5173.
+6.  Open the application in your browser at http://localhost:5173
     
 
 API Endpoints
