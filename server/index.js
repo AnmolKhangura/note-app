@@ -4,6 +4,9 @@ import passport from './config/passport.js';
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import env from "dotenv";
+
+env.config();
  
 const app = express();
 
@@ -12,7 +15,7 @@ const port = 3000;
 
 
 app.use(cors({
-  origin: 'http://localhost:5174', 
+  origin: process.env.FRONTEND_URL, 
   credentials: true, 
 }));
 
